@@ -49,6 +49,7 @@ end
 
 post "/types/?" do
 	Type.create(:name => params[:name])
+	session[:flash] = params[:name] + " was added to types"
 	redirect "/home"
 end
 
@@ -62,7 +63,7 @@ __END__
 	<tr><td>Conf Name: </td><td><input type="text" name="conf_name" value="Free Food Conf 2014" /></td></tr>
 	<tr><td>Location: </td><td><input type="text" name="conf_location" value="USA, New York" /></td></tr>
 	
-	<tr><td>Full Name: </td><td><input type="text" name="full_name" value="Dr. Cucumber Green" /></td></tr>
+	<tr><td>Full Name*: </td><td><input type="text" name="full_name" value="Dr. Cucumber Green" /></td></tr>
 	<tr><td>Nickname: </td><td><input type="text" name="nick" /></td></tr>
 	<tr>
 		<td>Type: </td>
@@ -72,7 +73,7 @@ __END__
 					<%= "<option>#{t.name}</option>" %>
 				<% end %>
 			</select>
-			<a href="/new_type">+</a>
+			<a href="/new_type">add type</a>
 		</td>
 	</tr>
 	<tr>
